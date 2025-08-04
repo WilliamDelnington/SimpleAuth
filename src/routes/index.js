@@ -19,14 +19,13 @@ export default function AppRoutes() {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route
-        path="/update-profile"
+        path="/update-password"
         element={<ProtectedRoute><UpdatePassword /></ProtectedRoute>}
       />
       <Route
-        path="/dashboard"
+        path="/"
         element={<ProtectedRoute><Dashboard /></ProtectedRoute>}
       />
-      <Route path="/" element={<Navigate to="/signin" />} />
     </Routes>
   );
 } 

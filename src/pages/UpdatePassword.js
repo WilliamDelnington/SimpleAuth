@@ -18,7 +18,7 @@ export default function UpdatePassword() {
         })
         if (response) {
             setSuccessMessage("Password updated successfully.")
-            setTimeout(() => navigate('/dashboard'), 2500);
+            setTimeout(() => navigate('/'), 2500);
         }
     }
 

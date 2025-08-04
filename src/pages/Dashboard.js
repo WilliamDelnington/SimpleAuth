@@ -5,9 +5,11 @@ import { Link, useNavigate } from 'react-router'
 import Button from '../components/common/Button'
 
 export default function Dashboard() {
-    const { user } = useContext(AuthContext)
+    const { user, token } = useContext(AuthContext)
     const { signOut } = useAuth()
     const navigate = useNavigate()
+
+    console.log(token)
 
     const handleSignout = () => {
         signOut();

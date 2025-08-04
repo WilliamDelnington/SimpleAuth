@@ -8,6 +8,7 @@ export function useAuth() {
     const [loading, setLoading] = useState(false)
     const signIn = async ({ email, password }) => {
         setLoading(true)
+        setError("")
         try {
             const { success, data, error: errMsg } = await AuthController.signIn({ email, password });
             if (success) {
@@ -16,6 +17,7 @@ export function useAuth() {
                 localStorage.setItem('token', data.token);
                 setError("")
             } else {
+                console.error(errMsg)
                 setError(errMsg)
             }
         } catch (err) {
@@ -27,6 +29,7 @@ export function useAuth() {
 
     const signUp = async ({ email, password, name }) => {
         setLoading(true)
+        setError("")
         try {
             const { success, data, error: errMsg } = await AuthController.signUp({ email, password, name });
             if (success) {
@@ -46,6 +49,7 @@ export function useAuth() {
 
     const forgotPassword = async ({ email }) => {
         setLoading(true)
+        setError("")
         try {
             const { success, data, error: errMsg } = await AuthController.forgotPassword({ email });
             if (success) {
@@ -63,6 +67,7 @@ export function useAuth() {
 
     const updateProfile = async ({ userId, name, email }) => {
         setLoading(true)
+        setError("")
         try {
             const { success, data, error: errMsg } = AuthController.updateProfile({ userId, name, email });
             if (success) {
@@ -80,12 +85,14 @@ export function useAuth() {
 
     const updatePassword = async ({ userId, currentPassword, newPassword }) => {
         setLoading(true)
+        setError("")
         try {
         const { success, data, error: errMsg } = await AuthController.updatePassword({
             userId,
             currentPassword,
             newPassword,
         });
+        console.log(success, data, errMsg)
         if (success) {
             setError(null);
             return data.message;

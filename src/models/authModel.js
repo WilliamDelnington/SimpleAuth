@@ -3,7 +3,7 @@ import endpoints from "./api/endpoints";
 
 const authModel = {
     async signIn({email, password}) {
-        const response = await axiosInstance.post(endpoints.signIn, {email, password})
+        const response = await axiosInstance.post(endpoints.signIn, { email, password })
         return response.data; // { token, user }
     },
     async signUp({ email, password, name }) {

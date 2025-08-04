@@ -18,7 +18,7 @@ export default function SignInForm({ onSubmit, error, loading }) {
 
   return (
     <form onSubmit={handleSubmit}>
-        {error && <FormError>{error}</FormError>}
+        {error && <FormError message={error}></FormError>}
         <div>
           <label htmlFor='email'>Email:</label>
           <Input 

@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useAuth } from '../controllers/hooks/useAuth'
 import SignUpForm from '../components/auth/SignUpForm'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import { AuthContext } from '../context/AuthContext'
 
 export default function SignUp() {
   const { signUp, error, loading } = useAuth()
+  const { user } = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (user) {
+      navigate("/")
+    }
+  }, [user, navigate])
 
   return (
     <div style={{

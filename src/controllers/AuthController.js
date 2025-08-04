@@ -11,7 +11,7 @@ const AuthController = {
         } catch (error) {
             return {
                 success: false,
-                error: error.response?.data?.message || 'Sign-in failed',
+                error: error.response?.data?.error || 'Sign-in failed',
             };
         }
     },
@@ -26,7 +26,7 @@ const AuthController = {
         } catch (error) {
             return {
                 success: false,
-                error: error.response?.data?.message || 'Sign-up failed',
+                error: error.response?.data?.error || 'Sign-up failed',
             };
         }
     },
@@ -75,7 +75,7 @@ const AuthController = {
         } catch (error) {
             return {
                 success: false,
-                error: error.response?.data?.message || 'Password update failed',
+                error: error.response?.data?.error || 'Password update failed',
             };
         }
     },

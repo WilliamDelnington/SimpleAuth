@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import SignInForm from '../components/auth/SignInForm'
 import { useAuth } from '../controllers/hooks/useAuth'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import { AuthContext } from '../context/AuthContext'
 
 export default function SignIn() {
   const { signIn, error, loading } = useAuth()
+  const { user } = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (user) {
+      navigate("/")
+    }
+  }, [user, navigate])
 
   return (
     <div style={{
