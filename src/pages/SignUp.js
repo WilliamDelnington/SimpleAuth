@@ -4,7 +4,7 @@ import SignUpForm from '../components/auth/SignUpForm'
 import { Link } from 'react-router'
 
 export default function SignUp() {
-  const { signUp } = useAuth()
+  const { signUp, error, loading } = useAuth()
 
   return (
     <div style={{
@@ -28,12 +28,12 @@ export default function SignUp() {
           fontWeight: '700',
           marginBottom: '1.5rem',
           textAlign: 'center',
-        }}>Sign In</h2>
-        <SignUpForm onSubmit={signUp}/>
+        }}>Sign Up</h2>
+        <SignUpForm onSubmit={signUp} error={error} loading={loading}/>
         <p style={{
           marginTop: '1rem',
           textAlign: 'center'
-        }}>Already have an account? <Link to="/signin" style={{color: rgb(59, 130, 246)}}>Sign In</Link></p>
+        }}>Already have an account? <Link to="/signin" style={{color: "rgb(59, 130, 246)"}}>Sign In</Link></p>
       </div>
     </div>
   )

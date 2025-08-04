@@ -1,42 +1,109 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import authModel from "../../models/authModel";
+import AuthController from "../AuthController";
 
 export function useAuth() {
-    const [setUser, setToken] = useContext(AuthContext)
+    const {setUser, setToken} = useContext(AuthContext)
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
     const signIn = async ({ email, password }) => {
-        await authModel.signIn({ email, password });
-        setToken(token);
-        localStorage.setItem('token', token);
+        setLoading(true)
+        try {
+            const { success, data, error: errMsg } = await AuthController.signIn({ email, password });
+            if (success) {
+                setUser(data.user)
+                setToken(data.token);
+                localStorage.setItem('token', data.token);
+                setError("")
+            } else {
+                setError(errMsg)
+            }
+        } catch (err) {
+            setError("Error sigining in: " + err.message)
+        } finally {
+            setLoading(false);
+        }
     }
 
     const signUp = async ({ email, password, name }) => {
-        await authModel.signUp({ email, password, name });
-        setUser(user);
-        setToken(token);
-        localStorage.setItem('token', token);
+        setLoading(true)
+        try {
+            const { success, data, error: errMsg } = await AuthController.signUp({ email, password, name });
+            if (success) {
+                setUser(data.user);
+                setToken(data.token);
+                localStorage.setItem('token', data.token);
+                setError("")
+            } else {
+                setError(errMsg)
+            }
+        } catch (err) {
+            setError("Error signing up: " + err.message)
+        } finally {
+            setLoading(false)
+        }
     };
 
     const forgotPassword = async ({ email }) => {
-        await authModel.forgotPassword({ email });
-        return response.message;
+        setLoading(true)
+        try {
+            const { success, data, error: errMsg } = await AuthController.forgotPassword({ email });
+            if (success) {
+                setError("")
+                return data.message
+            } else {
+                setError(errMsg)
+            }
+        } catch (err) {
+            setError("Error requesting password reset: " + err.message)
+        } finally {
+            setLoading(false)
+        }
     };
 
     const updateProfile = async ({ userId, name, email }) => {
-        await authModel.updateProfile({ userId, name, email });
-        setUser(user);
+        setLoading(true)
+        try {
+            const { success, data, error: errMsg } = AuthController.updateProfile({ userId, name, email });
+            if (success) {
+                setUser(data.user)
+                setError("")
+            } else {
+                setError(errMsg)
+            }
+        } catch (err) {
+            setError("Error updating profile: " + err.message)
+        } finally {
+            setLoading(false)
+        }
     };
 
     const updatePassword = async ({ userId, currentPassword, newPassword }) => {
-        await authModel.updatePassword({ userId, currentPassword, newPassword });
-        return response.message;
+        setLoading(true)
+        try {
+        const { success, data, error: errMsg } = await AuthController.updatePassword({
+            userId,
+            currentPassword,
+            newPassword,
+        });
+        if (success) {
+            setError(null);
+            return data.message;
+        } else {
+            setError(errMsg);
+        }
+        } catch (err) {
+            setError("Error updating password: " + err.message)
+        } finally {
+            setLoading(false);
+        }
     }
 
     const signOut = () => {
+        AuthController.signOut()
         setUser(null);
         setToken(null);
-        localStorage.removeItem('token');
     };
 
-    return { signIn, signUp, forgotPassword, updateProfile, signOut, updatePassword }
+    return { signIn, signUp, forgotPassword, updateProfile, signOut, updatePassword, error, loading }
 }

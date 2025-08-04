@@ -1,43 +1,40 @@
 import React, { useState } from 'react'
 import Input from '../common/Input'
+import FormError from '../common/FormError'
+import Button from '../common/Button'
 
-export default function UpdatePasswordForm({ onSubmit, successMessage }) {
+export default function UpdatePasswordForm({ onSubmit, error, loading, successMessage }) {
     const [currentPassword, setCurrentPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
     const [confirmNewPassword, setConfirmNewPassword] = useState("")
-    const [error, setError] = useState("")
-    const [loading, setLoading] = useState(false)
+    const [localError, setLocalError] = useState("")
+    // const [loading, setLoading] = useState(false)
 
-    const handleSubmit = (e) => {
-        setLoading(true)
+    const handleSubmit = async (e) => {
+        setLocalError("")
         e.preventDefault()
         if (newPassword !== confirmNewPassword) {
-            setError("Passwords do not match.")
-            setLoading(false)
+            setLocalError("Paswords do not match.")
             return
         }
         const formData = new FormData(e.target)
-        try {
-            setError("")
-            onSubmit({
-                currentPassword: formData.get('currentPassword'),
-                newPassword: formData.get('newPassword'),
-            })
-        } catch (err) {
-            setError(err.message)
-        }
-        setLoading(false)
+        onSubmit({
+            currentPassword: formData.get('currentPassword'),
+            newPassword: formData.get('newPassword'),
+        })
+        setLocalError("")
     }
 
   return (
     <form onSubmit={handleSubmit}>
-        {error && <FormError message={error} />}
-        (successMessage && <p style={{
+        {error && <FormError>{error}</FormError>}
+        {localError && <FormError>{localError}</FormError>}
+        {successMessage && <p style={{
             color: "#48bb78",
             fontSize: "0.875rem",
             lineHeight: "1.25rem",
             textAlign: "center"
-        }}>{successMessage}</p>)
+        }}>{successMessage}</p>}
         <label htmlFor='current-password'>Current Password:</label>
         <Input 
         type='password'

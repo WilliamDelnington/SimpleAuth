@@ -4,7 +4,7 @@ import { useAuth } from '../controllers/hooks/useAuth'
 import { Link } from 'react-router'
 
 export default function SignIn() {
-  const { signIn } = useAuth()
+  const { signIn, error, loading } = useAuth()
 
   return (
     <div style={{
@@ -29,15 +29,15 @@ export default function SignIn() {
           marginBottom: '1.5rem',
           textAlign: 'center',
         }}>Sign In</h2>
-        <SignInForm onSubmit={signIn}/>
+        <SignInForm onSubmit={signIn} error={error} loading={loading}/>
         <p style={{
           marginTop: '1rem',
           textAlign: 'center'
-        }}>Don't have an account? <Link to="/signup" style={{color: rgb(59, 130, 246)}}>Sign Up</Link></p>
+        }}>Don't have an account? <Link to="/signup" style={{color: "rgb(59, 130, 246)"}}>Sign Up</Link></p>
         <p style={{
           marginTop: '0.5rem',
           textAlign: 'center'}}>
-          <Link to="/forgot-password" style={{color: rgb(59, 130, 246)}}>Forgot Password?</Link>
+          <Link to="/forgot-password" style={{color: "rgb(59, 130, 246)"}}>Forgot Password?</Link>
         </p>
       </div>
     </div>

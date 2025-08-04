@@ -3,6 +3,9 @@ import { AuthContext } from "../context/AuthContext";
 import { Navigate, Route, Routes } from "react-router-dom"
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import ForgotPassword from "../pages/ForgotPassword";
+import UpdatePassword from "../pages/UpdatePassword";
+import Dashboard from "../pages/Dashboard";
 
 function ProtectedRoute({ children }) {
   const { user } = useContext(AuthContext);
@@ -17,7 +20,7 @@ export default function AppRoutes() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route
         path="/update-profile"
-        element={<ProtectedRoute><UpdateProfile /></ProtectedRoute>}
+        element={<ProtectedRoute><UpdatePassword /></ProtectedRoute>}
       />
       <Route
         path="/dashboard"

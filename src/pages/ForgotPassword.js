@@ -4,7 +4,7 @@ import { useAuth } from '../controllers/hooks/useAuth'
 import { Link } from 'react-router'
 
 export default function ForgotPassword() {
-    const { forgotPassword } = useAuth()
+    const { forgotPassword, error, loading } = useAuth()
     const [successMessage, setSuccessMessage] = useState("")
 
     const handleSubmit = async ({ email }) => {
@@ -36,7 +36,11 @@ export default function ForgotPassword() {
             marginBottom: "1.5rem",
             textAlign: "center"
         }}>Reset Password</h2>
-        <ForgotPasswordForm onSubmit={handleSubmit} successMessage={successMessage}/>
+        <ForgotPasswordForm 
+        onSubmit={handleSubmit} 
+        successMessage={successMessage}
+        error={error}
+        loading={loading}/>
         <p style={{
             marginTop: "1rem",
             textAlign: "center"

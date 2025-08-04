@@ -6,7 +6,7 @@ import UpdatePasswordForm from '../components/auth/UpdatePasswordForm'
 
 export default function UpdatePassword() {
     const { user } = useContext(AuthContext)
-    const { updatePassword } = useAuth()
+    const { updatePassword, error, loading } = useAuth()
     const [successMessage, setSuccessMessage] = useState("")
     const navigate = useNavigate()
 
@@ -50,7 +50,12 @@ export default function UpdatePassword() {
             marginBottom: "1.5rem",
             textAlign: "center"
         }}>Update Password</h2>
-        <UpdatePasswordForm onSubmit={updatePassword}/>
+        <UpdatePasswordForm 
+        onSubmit={handleSubmit} 
+        successMessage={successMessage}
+        error={error}
+        loading={loading}
+        />
       </div>
     </div>
   )

@@ -19,7 +19,7 @@ const authModel = {
         return response.data; // { user }
     },
     async updatePassword({ userId, currentPassword, newPassword }) {
-        const response = await api.put(endpoints.updatePassword(userId), { currentPassword, newPassword });
+        const response = await axiosInstance.put(endpoints.updatePassword(userId), { currentPassword, newPassword });
         return response.data; // { message }
     },
 }
