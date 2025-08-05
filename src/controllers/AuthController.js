@@ -46,6 +46,21 @@ const AuthController = {
         }
     },
 
+    async resetPassword({ token, newPassword }) {
+        try {
+            const response = await authModel.resetPassword({ token, newPassword })
+            return {
+                success: true,
+                data: response
+            }
+        } catch (error) {
+            return {
+                success: false,
+                error: error.response?.data?.error || "Reset password failed"
+            }
+        }
+    },
+
     async updateProfile({ userId, name, email }) {
         try {
             const response = await authModel.updateProfile({ userId, name, email });

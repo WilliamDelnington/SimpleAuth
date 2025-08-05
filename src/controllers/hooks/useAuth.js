@@ -65,6 +65,25 @@ export function useAuth() {
         }
     };
 
+    const resetPassword = async ({ token, newPassword }) => {
+        setLoading(true)
+        setError("")
+        try {
+            const { success, data, error: errMsg } = await AuthController.resetPassword({ token, newPassword })
+            if (success) {
+                setError("")
+                return data.message
+            } else {
+                console.error(errMsg)
+                setError(errMsg)
+            }
+        } catch (err) {
+            setError("Error resetting password: " + err.message)
+        } finally {
+            setLoading(false)
+        }
+    }
+
     const updateProfile = async ({ userId, name, email }) => {
         setLoading(true)
         setError("")
@@ -112,5 +131,5 @@ export function useAuth() {
         setToken(null);
     };
 
-    return { signIn, signUp, forgotPassword, updateProfile, signOut, updatePassword, error, loading }
+    return { signIn, signUp, forgotPassword, updateProfile, signOut, updatePassword, error, loading, resetPassword }
 }

@@ -14,6 +14,10 @@ const authModel = {
         const response = await axiosInstance.post(endpoints.forgotPassword, { email });
         return response.data; // { message }
     },
+    async resetPassword({ token, newPassword }) {
+        const response = await axiosInstance.post(endpoints.resetPassword, { token, newPassword })
+        return response.data // { message }
+    },
     async updateProfile({ userId, name, email }) {
         const response = await axiosInstance.put(endpoints.updateProfile(userId), { name, email });
         return response.data; // { user }

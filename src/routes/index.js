@@ -6,6 +6,7 @@ import SignUp from "../pages/SignUp";
 import ForgotPassword from "../pages/ForgotPassword";
 import UpdatePassword from "../pages/UpdatePassword";
 import Dashboard from "../pages/Dashboard";
+import ResetPassword from "../pages/ResetPassword";
 
 function ProtectedRoute({ children }) {
   const { user } = useContext(AuthContext);
@@ -18,6 +19,7 @@ export default function AppRoutes() {
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />}/>
       <Route
         path="/update-password"
         element={<ProtectedRoute><UpdatePassword /></ProtectedRoute>}

@@ -18,20 +18,22 @@ export default function ForgotPasswordForm({ onSubmit, successMessage, error, lo
 
   return (
     <form onSubmit={handleSubmit}>
-        {error && <FormError>{error}</FormError>}
+        {error && <FormError message={error}></FormError>}
         {successMessage && <p style={{
             color: "#48bb78",
             fontSize: "0.875rem",
             lineHeight: "1.25rem",
             textAlign: "center"
         }}>{successMessage}</p>}
-        <label htmlFor='email'>Enter your email:</label>
-        <Input 
-        type='text' 
-        id="email" 
-        name='email' 
-        value={email}
-        onChange={e => setEmail(e.target.value)}/>
+        <div>
+            <label htmlFor='email'>Enter your email:</label>
+            <Input 
+            type='text' 
+            id="email" 
+            name='email' 
+            value={email}
+            onChange={e => setEmail(e.target.value)}/>
+        </div>
         <Button 
         type='submit'
         disabled={loading}>
