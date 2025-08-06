@@ -68,3 +68,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Simple Authentication
+
+## Project Overview
+
+The Simple Authentication is a simple web application that handles user authentication and profile management. The application implements core features including SignIn, SignUp, ForgotPassword, UpdateProfile, UpdatePassword, and a Dashboard for authenticated users. The project follows an MVC architecture, separating concerns into Model (data and API interactions), View (UI components), and Controller (business logic and state management). The application uses modern web technologies, including React, react-router-dom for routing, and Axios for API requests.
+
+## Overall workflow
