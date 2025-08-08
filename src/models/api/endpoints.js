@@ -3,8 +3,9 @@ const endpoints = {
   signUp: '/signup',
   forgotPassword: '/forgot-password',
   resetPassword: "/reset-password",
-  updateProfile: (userId) => `/users/${userId}`,
-  updatePassword: (userId) => `/users/${userId}/password`,
+  refreshToken: "/token/refresh",
+  updateProfile: (userId) => `/users/${userId}/update`,
+  updatePassword: (userId) => `/update-password`,
 };
 
 export default endpoints;

@@ -1,9 +1,17 @@
 import authModel from "../models/authModel";
 
 const AuthController = {
-    async signIn({ email, password }) {
+    async signIn({ 
+        email, 
+        password,
+        location = ""
+    }) {
         try {
-            const response = await authModel.signIn({ email, password });
+            const response = await authModel.signIn({ 
+                email, 
+                password,
+                location
+            });
             return { 
                 success: true, 
                 data: response 
@@ -11,14 +19,30 @@ const AuthController = {
         } catch (error) {
             return {
                 success: false,
-                error: error.response?.data?.error || 'Sign-in failed',
+                error: error.message || 'Sign-in failed',
             };
         }
     },
 
-    async signUp({ email, password, name }) {
+    async signUp({ 
+        email, 
+        password, 
+        firstName,
+        lastName,
+        phoneNumber,
+        address,
+        location = ""
+    }) {
         try {
-            const response = await authModel.signUp({ email, password, name });
+            const response = await authModel.signUp({ 
+                email, 
+                password, 
+                firstName,
+                lastName, 
+                phoneNumber,
+                address,
+                location
+            });
             return { 
                 success: true, 
                 data: response 
@@ -26,7 +50,7 @@ const AuthController = {
         } catch (error) {
             return {
                 success: false,
-                error: error.response?.data?.error || 'Sign-up failed',
+                error: error.message || 'Sign-up failed',
             };
         }
     },
@@ -61,9 +85,27 @@ const AuthController = {
         }
     },
 
-    async updateProfile({ userId, name, email }) {
+    async updateProfile({ 
+        userId, 
+        firstName,
+        lastName,
+        phoneNumber,
+        email, 
+        address,
+        location,
+        password 
+    }) {
         try {
-            const response = await authModel.updateProfile({ userId, name, email });
+            const response = await authModel.updateProfile({ 
+                userId, 
+                firstName,
+                lastName,
+                phoneNumber,
+                email, 
+                address,
+                location,
+                password
+            });
             return { 
                 success: true, 
                 data: response 

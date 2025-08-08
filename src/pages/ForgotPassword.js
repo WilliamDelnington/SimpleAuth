@@ -15,36 +15,15 @@ export default function ForgotPassword() {
     }
 
   return (
-    <div style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#f3f4f6"
-    }}>
-      <div style={{
-        backgroundColor: "#ffffff",
-        padding: "2rem",
-        borderRadius: "0.25rem",
-        boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06)",
-        maxWidth: "28rem"
-      }}>
-        <h2 style={{
-            fontSize: "1.5rem",
-            lineHeight: "2rem",
-            fontWeight: "700",
-            marginBottom: "1.5rem",
-            textAlign: "center"
-        }}>Reset Password</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-center">Reset Password</h2>
         <ForgotPasswordForm 
         onSubmit={handleSubmit} 
         successMessage={successMessage}
         error={error}
         loading={loading}/>
-        <p style={{
-            marginTop: "1rem",
-            textAlign: "center"
-        }}><Link to="/signin" style={{ color: "rgb(59, 130, 246)"}}>Back to Sign In</Link></p>
+        <p className="mt-4 text-center"><Link to="/signin" className="text-blue-500">Back to Sign In</Link></p>
       </div>
     </div>
   )

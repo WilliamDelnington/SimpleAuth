@@ -6,11 +6,19 @@ export function useAuth() {
     const {setUser, setToken} = useContext(AuthContext)
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
-    const signIn = async ({ email, password }) => {
+    const signIn = async ({ 
+        email, 
+        password, 
+        location = "" 
+    }) => {
         setLoading(true)
         setError("")
         try {
-            const { success, data, error: errMsg } = await AuthController.signIn({ email, password });
+            const { success, data, error: errMsg } = await AuthController.signIn({ 
+                email, 
+                password, 
+                location
+            });
             if (success) {
                 setUser(data.user)
                 setToken(data.token);
@@ -27,17 +35,35 @@ export function useAuth() {
         }
     }
 
-    const signUp = async ({ email, password, name }) => {
+    const signUp = async ({ 
+        email, 
+        password, 
+        firstName,
+        lastName,
+        phoneNumber,
+        address,
+        location = ""
+    }) => {
         setLoading(true)
         setError("")
         try {
-            const { success, data, error: errMsg } = await AuthController.signUp({ email, password, name });
+            const { success, data, error: errMsg } = await AuthController.signUp({ 
+                email, 
+                password, 
+                firstName,
+                lastName,
+                phoneNumber,
+                address,
+                location
+            });
             if (success) {
+                console.log("Signed up successfully.")
                 setUser(data.user);
                 setToken(data.token);
                 localStorage.setItem('token', data.token);
                 setError("")
             } else {
+                console.error("Error signing up: ", errMsg)
                 setError(errMsg)
             }
         } catch (err) {
@@ -84,15 +110,35 @@ export function useAuth() {
         }
     }
 
-    const updateProfile = async ({ userId, name, email }) => {
+    const updateProfile = async ({ 
+        userId, 
+        firstName, 
+        lastName,
+        phoneNumber,
+        email, 
+        address,
+        location,
+        password 
+    }) => {
         setLoading(true)
         setError("")
         try {
-            const { success, data, error: errMsg } = AuthController.updateProfile({ userId, name, email });
+            const { success, data, error: errMsg } = AuthController.updateProfile({ 
+                userId, 
+                firstName,
+                lastName,
+                phoneNumber, 
+                email, 
+                address,
+                location,
+                password 
+            });
+            console.log(success, data, errMsg)
             if (success) {
                 setUser(data.user)
                 setError("")
             } else {
+                console.error(errMsg)
                 setError(errMsg)
             }
         } catch (err) {

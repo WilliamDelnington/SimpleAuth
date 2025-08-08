@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 import Button from '../common/Button'
 import Input from '../common/Input'
 import FormError from '../common/FormError'
+import PropTypes from 'prop-types'
 
-export default function ForgotPasswordForm({ onSubmit, successMessage, error, loading }) {
+function ForgotPasswordForm({ 
+    onSubmit, 
+    successMessage, 
+    error, 
+    loading }) {
     const [email, setEmail] = useState("")
     // const [error, setError] = useState("")
     // const [loading, setLoading] = useState(false)
@@ -26,12 +31,15 @@ export default function ForgotPasswordForm({ onSubmit, successMessage, error, lo
             textAlign: "center"
         }}>{successMessage}</p>}
         <div>
-            <label htmlFor='email'>Enter your email:</label>
+            <label 
+            htmlFor='email'
+            className='authField'>Enter your email:</label>
             <Input 
             type='text' 
             id="email" 
             name='email' 
             value={email}
+            className='authInput'
             onChange={e => setEmail(e.target.value)}/>
         </div>
         <Button 
@@ -42,3 +50,12 @@ export default function ForgotPasswordForm({ onSubmit, successMessage, error, lo
     </form>
   )
 }
+
+ForgotPasswordForm.propTypes = {
+    onSubmit: PropTypes.func,
+    successMessage: PropTypes.string,
+    error: PropTypes.string,
+    loading: PropTypes.bool
+}
+
+export default ForgotPasswordForm

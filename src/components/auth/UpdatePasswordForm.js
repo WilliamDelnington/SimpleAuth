@@ -2,8 +2,14 @@ import React, { useState } from 'react'
 import Input from '../common/Input'
 import FormError from '../common/FormError'
 import Button from '../common/Button'
+import PropTypes from 'prop-types'
 
-export default function UpdatePasswordForm({ onSubmit, error, loading, successMessage }) {
+function UpdatePasswordForm({ 
+    onSubmit, 
+    error, 
+    loading, 
+    successMessage 
+}) {
     const [currentPassword, setCurrentPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
     const [confirmNewPassword, setConfirmNewPassword] = useState("")
@@ -36,29 +42,38 @@ export default function UpdatePasswordForm({ onSubmit, error, loading, successMe
             textAlign: "center"
         }}>{successMessage}</p>}
         <div>
-            <label htmlFor='current-password'>Current Password:</label>
+            <label 
+            htmlFor='current-password'
+            className='authField'>Current Password:</label>
             <Input 
             type='password'
             id="current-password"
             name="current-password"
+            className='authInput'
             value={currentPassword}
             onChange={e => setCurrentPassword(e.target.value)} />
         </div>
         <div>
-            <label htmlFor='new-password'>New Password:</label>
+            <label 
+            htmlFor='new-password'
+            className='authField'>New Password:</label>
             <Input 
             type='password' 
             id="new-password" 
             name='new-password'
+            className='authInput'
             value={newPassword}
             onChange={e => setNewPassword(e.target.value)} />
         </div>
         <div>
-            <label htmlFor='confirm-new-password'>Confirm New Password:</label>
+            <label 
+            htmlFor='confirm-new-password'
+            className='authField'>Confirm New Password:</label>
             <Input 
             type='password'
             id="confirm-new-password"
             name="confirm-new-password"
+            className='authInput'
             value={confirmNewPassword}
             onChange={e => setConfirmNewPassword(e.target.value)} />
         </div>
@@ -68,3 +83,12 @@ export default function UpdatePasswordForm({ onSubmit, error, loading, successMe
     </form>
   )
 }
+
+UpdatePasswordForm.propTypes = {
+    onSubmit: PropTypes.func,
+    successMessage: PropTypes.string,
+    error: PropTypes.string,
+    loading: PropTypes.bool
+}
+
+export default UpdatePasswordForm

@@ -7,6 +7,7 @@ import ForgotPassword from "../pages/ForgotPassword";
 import UpdatePassword from "../pages/UpdatePassword";
 import Dashboard from "../pages/Dashboard";
 import ResetPassword from "../pages/ResetPassword";
+import UpdateProfile from "../pages/UpdateProfile";
 
 function ProtectedRoute({ children }) {
   const { user } = useContext(AuthContext);
@@ -28,6 +29,9 @@ export default function AppRoutes() {
         path="/"
         element={<ProtectedRoute><Dashboard /></ProtectedRoute>}
       />
+      <Route
+      path="/update-profile"
+      element={<ProtectedRoute><UpdateProfile /></ProtectedRoute>}/>
     </Routes>
   );
 } 
