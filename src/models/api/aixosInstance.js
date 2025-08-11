@@ -34,7 +34,12 @@ axiosInstance.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    console.log("Error: ", error)
+    // console.log("Error: ", error)
+
+    if (error.message && error.message === "Network Error") {
+      console.error("Network error")
+      return Promise
+    }
 
     // Access token expired
     if (error.response.status === 401 && !originalRequest._retry) {
