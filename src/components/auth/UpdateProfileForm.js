@@ -29,15 +29,15 @@ function UpdateProfileForm({
             && location === ""
             && email === "") return
         const formData = new FormData(e.target)
-        console.log({
-            email: formData.get("newEmail"),
-            phoneNumber: formData.get("newPhoneNumber"),
-            password: formData.get("password"),
-            firstName: formData.get("firstName"),
-            lastName: formData.get("lastName"),
-            address: formData.get("newAddress"),
-            location: formData.get("newLocation")
-        })
+        // console.log({
+        //     email: formData.get("newEmail"),
+        //     phoneNumber: formData.get("newPhoneNumber"),
+        //     password: formData.get("password"),
+        //     firstName: formData.get("firstName"),
+        //     lastName: formData.get("lastName"),
+        //     address: formData.get("newAddress"),
+        //     location: formData.get("newLocation")
+        // })
         onSubmit({
             email: formData.get("newEmail"),
             password: formData.get("password"),

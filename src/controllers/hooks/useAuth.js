@@ -26,7 +26,7 @@ export function useAuth() {
                 localStorage.setItem('refresh_token', data.tokens.refresh)
                 setError("")
             } else {
-                console.error(errMsg)
+                // console.error(errMsg)
                 setError(errMsg)
             }
         } catch (err) {
@@ -102,7 +102,7 @@ export function useAuth() {
                 setError("")
                 return data.message
             } else {
-                console.error(errMsg)
+                // console.error(errMsg)
                 setError(errMsg)
             }
         } catch (err) {
@@ -139,7 +139,7 @@ export function useAuth() {
                 setUser(data.user)
                 setError("")
             } else {
-                console.error(errMsg)
+                // console.error(errMsg)
                 setError(errMsg)
             }
         } catch (err) {

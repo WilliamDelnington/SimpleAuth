@@ -32,7 +32,7 @@ const authModel = {
             address,
             location
         });
-        console.log(response)
+        // console.log(response)
         return response.data; // { token, user }
     },
     async forgotPassword({ email }) {

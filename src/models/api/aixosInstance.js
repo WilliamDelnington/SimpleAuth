@@ -49,15 +49,15 @@ axiosInstance.interceptors.response.use(
       try {
         const res = await axiosInstance.post(
           endpoints.refreshToken, 
-          { refresh: refreshToken }, 
-          // { withCredentials: true }
+          { }, 
+          { withCredentials: true }
         );
 
         const newToken = res.data.access;
         sessionStorage.setItem('token', newToken);
 
         // // Update the header and retry original request
-        // originalRequest.headers.Authorization = `Bearer ${newToken}`;
+        originalRequest.headers.Authorization = `Bearer ${newToken}`;
         return axiosInstance(originalRequest);
       } catch (refreshErr) {
         console.error('Refresh Token Error:', refreshErr);

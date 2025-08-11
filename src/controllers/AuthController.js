@@ -65,7 +65,7 @@ const AuthController = {
         } catch (error) {
             return {
                 success: false,
-                error: error.response?.data?.message || 'Request failed',
+                error: error.message || 'Request failed',
             };
         }
     },
@@ -80,7 +80,7 @@ const AuthController = {
         } catch (error) {
             return {
                 success: false,
-                error: error.response?.data?.error || "Reset password failed"
+                error: error.message || "Reset password failed"
             }
         }
     },
@@ -106,13 +106,13 @@ const AuthController = {
                 location,
                 password
             });
-            console.log(response)
+            // console.log(response)
             return { 
                 success: true, 
                 data: response 
             }; // { user }
         } catch (error) {
-            console.error(error)
+            // console.error(error)
             return {
                 success: false,
                 error: error.message || 'Update failed',
@@ -140,7 +140,7 @@ const AuthController = {
     },
 
     signOut() {
-        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
         return { 
             success: true, 
             data: null 

@@ -23,15 +23,6 @@ function SignUpForm({
     const handleSubmit = async (e) => {
         e.preventDefault()
         const formData = new FormData(e.target)
-        console.log({
-          firstName: formData.get("firstName"),
-            lastName: formData.get("lastName"),
-            email: formData.get("email"),
-            password: formData.get("password"),
-            address: formData.get("address"),
-            phoneNumber: formData.get("phoneNumber"),
-            location: formData.get("location")
-        })
         onSubmit({
             firstName: formData.get("firstName"),
             lastName: formData.get("lastName"),
