@@ -8,7 +8,7 @@ function Button({
     onClick = () => {},
     className = ""
 }) {
-    const [isHovered, setIsHovered] = useState(false)
+    // const [isHovered, setIsHovered] = useState(false)
 
   return (
     <button
@@ -27,8 +27,9 @@ function Button({
     //     backgroundColor: disabled ? "#9CA3AF" : (isHovered ? "#2563EB" : "#3B82F6"),
     //     borderRadius: "0.25rem"
     // }}
-    onMouseEnter={() => setIsHovered(true)}
-    onMouseLeave={() => setIsHovered(false)}>
+    // onMouseEnter={() => setIsHovered(true)}
+    // onMouseLeave={() => setIsHovered(false)}>
+    >
       {children}
     </button>
   )

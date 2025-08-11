@@ -10,10 +10,10 @@ function Input({
     value = "",
     onChange = () => {}
 }) {
-  const [isFocused, setIsFocused] = useState(false)
+  // const [isFocused, setIsFocused] = useState(false)
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false)
+  // const handleFocus = () => setIsFocused(true);
+  // const handleBlur = () => setIsFocused(false)
 
   return (
     <input

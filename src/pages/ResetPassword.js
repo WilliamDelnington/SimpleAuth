@@ -26,6 +26,9 @@ export default function ResetPassword() {
         if (response) {
             setSuccessMessage("Password reset successfully. You can now sign in with your new password.")
         }
+        setTimeout(() => {
+          navigate("/")
+        }, 5000)
     }
 
   return (

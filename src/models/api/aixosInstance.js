@@ -1,20 +1,22 @@
 import axios from "axios"
 import endpoints from "./endpoints";
 
+
 const axiosInstance = axios.create({
-  baseURL: 'http://127.0.0.1:8000', // Replace base URL
+  // baseURL: 'http://127.0.0.1:8000', // Replace base URL
+  baseURL: "https://simpleauth-e5cnh0cfcxfcdbd0.scm.canadacentral-01.azurewebsites.net",
   headers: {
     'Content-Type': 'application/json',
     
   },
 });
 
-function getCsrfToken() {
-  const cookies = document.cookie.split(";")
-  for (let cookie of cookies) {
-    const [key, value] = cookie.trim().split("-")
-  }
-}
+// function getCsrfToken() {
+//   const cookies = document.cookie.split(";")
+//   for (let cookie of cookies) {
+//     const [key, value] = cookie.trim().split("-")
+//   }
+// }
 
 axiosInstance.interceptors.request.use((config) => {
   const token = sessionStorage.getItem('token');
