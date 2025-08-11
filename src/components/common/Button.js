@@ -16,8 +16,9 @@ function Button({
     disabled={disabled}
     onClick={onClick}
     className={`
-      w-full px-4 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600 
-      disabled:bg-gray-400 disabled:cursor-not-allowed ${className}
+      w-full px-4 py-3 sm:px-5 sm:py-4 font-semibold text-base sm:text-lg text-white
+      bg-blue-500 rounded hover:bg-blue-600 disabled:bg-gray-400 
+      disabled:cursor-not-allowed ${className}
     `}
     // style={{
     //     padding: "1rem 0.5rem",

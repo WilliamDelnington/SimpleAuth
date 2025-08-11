@@ -2,13 +2,13 @@ import authModel from "../models/authModel";
 
 const AuthController = {
     async signIn({ 
-        email, 
+        emailPhoneNumber, 
         password,
         location = ""
     }) {
         try {
             const response = await authModel.signIn({ 
-                email, 
+                emailPhoneNumber, 
                 password,
                 location
             });
@@ -70,9 +70,9 @@ const AuthController = {
         }
     },
 
-    async resetPassword({ token, newPassword }) {
+    async resetPassword({ token, uid, newPassword }) {
         try {
-            const response = await authModel.resetPassword({ token, newPassword })
+            const response = await authModel.resetPassword({ token, uid, newPassword })
             return {
                 success: true,
                 data: response
@@ -106,14 +106,16 @@ const AuthController = {
                 location,
                 password
             });
+            console.log(response)
             return { 
                 success: true, 
                 data: response 
             }; // { user }
         } catch (error) {
+            console.error(error)
             return {
                 success: false,
-                error: error.response?.data?.message || 'Update failed',
+                error: error.message || 'Update failed',
             };
         }
     },
@@ -132,7 +134,7 @@ const AuthController = {
         } catch (error) {
             return {
                 success: false,
-                error: error.response?.data?.error || 'Password update failed',
+                error: error.message || 'Password update failed',
             };
         }
     },

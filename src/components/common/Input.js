@@ -33,10 +33,9 @@ function Input({
     //     maxWidth: "32rem",
     //     width: "100%"
     // }}
-    className={`
-      w-full px-3 py-2 border border-gray-300 rounded focus:outline-none 
-      focus:ring-2 focus:ring-blue-500 ${className}
-    `}
+    className={`w-full px-4 py-3 sm:px-5 sm:py-4 border border-gray-300 rounded
+    focus:outline-none focus:ring-2 focus:ring-blue-500 text-base 
+    sm:text-lg ${className}`}
     value={value}
     onChange={onChange}/>
   )

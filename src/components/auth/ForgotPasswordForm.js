@@ -22,26 +22,17 @@ function ForgotPasswordForm({
     }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='space-y-4'>
         {error && <FormError message={error}></FormError>}
-        {successMessage && <p style={{
-            color: "#48bb78",
-            fontSize: "0.875rem",
-            lineHeight: "1.25rem",
-            textAlign: "center"
-        }}>{successMessage}</p>}
-        <div>
-            <label 
-            htmlFor='email'
-            className='authField'>Enter your email:</label>
-            <Input 
+        {successMessage && <p className="text-green-500 text-sm text-center">{successMessage}</p>}
+         <Input 
             type='text' 
             id="email" 
             name='email' 
             value={email}
+            placeholder='Enter your email'
             className='authInput'
             onChange={e => setEmail(e.target.value)}/>
-        </div>
         <Button 
         type='submit'
         disabled={loading}>

@@ -9,12 +9,24 @@ export default function UpdateProfile() {
   const [successMessage, setSuccessMessage] = useState("")
   const { user } = useContext(AuthContext)
 
-  const handleSubmit = async ({ email, name, password }) => {
+  const handleSubmit = async ({ 
+    email, 
+    password,
+    firstName,
+    lastName,
+    address,
+    location,
+    phoneNumber 
+  }) => {
     const response = await updateProfile({
       userId: user.id,
-      name: name,
-      email: email,
-      password: password
+      firstName,
+      lastName,
+      phoneNumber,
+      email,
+      address,
+      location,
+      password
      })
      if (response) {
         setSuccessMessage(response)
@@ -22,18 +34,17 @@ export default function UpdateProfile() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Update Profile</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 sm:px-6 lg:px-8">
+      <div className="bg-white p-6 sm:p-8 rounded shadow-md w-full max-w-sm sm:max-w-md lg:max-w-lg">
+        <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center">Update Profile</h2>
         <UpdateProfileForm 
         onSubmit={handleSubmit}
         successMessage={successMessage}
         error={error}
         loading={loading}/>
-        <p style={{
-            marginTop: "1rem",
-            textAlign: "center"
-        }}><Link to="/" style={{ color: "rgb(59, 130, 246)"}}>Return to main page</Link></p>
+        <p className="mt-4 text-center text-sm sm:text-base">
+          <Link to="/" style={{ color: "rgb(59, 130, 246)"}}>Return to main page</Link>
+        </p>
       </div>
     </div>
   )

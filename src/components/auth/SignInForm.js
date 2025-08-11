@@ -9,7 +9,7 @@ function SignInForm({
   error, 
   loading 
 }) {
-    const [email, setEmail] = useState("")
+    const [emailPhoneNumber, setEmailPhoneNumber] = useState("")
     const [password, setPassword] = useState("")
     const [location, setLocation] = useState("")
 
@@ -17,50 +17,38 @@ function SignInForm({
         e.preventDefault()
         const formData = new FormData(e.target);
         onSubmit({
-          email: formData.get("email"),
+          emailPhoneNumber: formData.get("emailPhoneNumber"),
           password: formData.get("password")
         })
     }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="space-y-4">
         {error && <FormError message={error}></FormError>}
-        <div>
-          <label 
-          htmlFor='email'
-          className="authField">Email:</label>
-          <Input 
+        <Input 
           type='text' 
-          id="email" 
-          name='email'
+          id="emailPhoneNumber" 
+          name='emailPhoneNumber'
           className='authInput'
-          value={email}
-          onChange={e => setEmail(e.target.value)}/>
-        </div>
-        <div>
-          <label 
-          htmlFor='password'
-          className='authField'>Password:</label>
-          <Input 
+          placeholder='Email or Phone number'
+          value={emailPhoneNumber}
+          onChange={e => setEmailPhoneNumber(e.target.value)}/>
+        <Input 
           type='password' 
           id="password" 
           name='password'
           className='authInput'
+          placeholder='Password'
           value={password}
           onChange={e => setPassword(e.target.value)}/>
-        </div>
-        <div>
-          <label 
-          htmlFor='location'
-          className='authField'>Location:</label>
-          <Input 
+        <Input 
           type='text' 
           id="location" 
           name='location'
           className='authInput'
+          placeholder='Location'
           value={location}
           onChange={e => setLocation(e.target.value)}/>
-        </div>
         <Button 
         type='submit'
         disabled={loading}>Sign In</Button>

@@ -3,12 +3,12 @@ import endpoints from "./api/endpoints";
 
 const authModel = {
     async signIn({
-        email, 
+        emailPhoneNumber, 
         password, 
         location = "" 
     }) {
         const response = await axiosInstance.post(endpoints.signIn, { 
-            email, 
+            emailPhoneNumber, 
             password, 
             location 
         })
@@ -39,8 +39,14 @@ const authModel = {
         const response = await axiosInstance.post(endpoints.forgotPassword, { email });
         return response.data; // { message }
     },
-    async resetPassword({ token, newPassword }) {
-        const response = await axiosInstance.post(endpoints.resetPassword, { token, newPassword })
+    async resetPassword({ 
+        token,
+        uid, 
+        newPassword }) {
+        const response = await axiosInstance.post(
+            endpoints.resetPassword, 
+            { token, uid, newPassword }
+        )
         return response.data // { message }
     },
     async updateProfile({ 

@@ -44,104 +44,72 @@ function SignUpForm({
     }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='space-y-4'>
         {error && <FormError message={error} />}
-        <div>
-          <label 
-          htmlFor='firstName'
-          className='authField'>First Name:</label>
-          <Input 
+        <Input 
           type='text'
           id="firstName"
           name="firstName"
           className='authInput'
+          placeholder='First Name'
           value={firstName}
           onChange={e => setFirstName(e.target.value)}/>
-        </div>
-        <div>
-          <label 
-          htmlFor='last-name'
-          className='authField'>Last Name:</label>
-          <Input 
+        <Input 
           type='text'
           id="lastName"
           name="lastName"
           className='authInput'
+          placeholder='Last Name'
           value={lastName}
           onChange={e => setLastName(e.target.value)}/>
-        </div>
-        <div>
-          <label 
-          htmlFor='email'
-          className='authField'>Email:</label>
-          <Input 
+        <Input 
           type='text' 
           id="email" 
           name='email'
           className='authInput' 
+          placeholder='Email'
           value={email}
           onChange={e => setEmail(e.target.value)}/>
-        </div>
-        <div>
-          <label 
-          htmlFor='phoneNumber'
-          className='authField'>Phone Number:</label>
-          <Input 
+        <Input 
           type='text' 
           id="phoneNumber" 
           name='phoneNumber' 
           className='authInput'
+          placeholder='Phone Number'
           value={phoneNumber}
           onChange={e => setPhoneNumber(e.target.value)}/>
-        </div>
-        <div>
-          <label 
-          htmlFor='address'
-          className='authField'>Address:</label>
-          <Input 
+        <Input 
           type='text' 
           id="address" 
           name='address' 
           className='authInput'
+          placeholder='Address'
           value={address}
           onChange={e => setAddress(e.target.value)}/>
-        </div>
-        <div>
-          <label 
-          htmlFor='location'
-          className='authField'>Location:</label>
-          <Input 
+        <Input 
           type='text' 
           id="location" 
           name='location' 
           className='authInput'
+          placeholder='Location'
           value={location}
           onChange={e => setLocation(e.target.value)}/>
-        </div>
-        <div>
-          <label 
-          htmlFor='password'
-          className='authField'>Password:</label>
-          <Input 
+        <Input 
           type='password' 
           id="password" 
           name='password'
           className='authInput'
+          placeholder='Password'
           value={password}
           onChange={e => setPassword(e.target.value)}/>
-        </div>
-        <div>
-          <label 
-          htmlFor='confirm-password'
-          className='authField'>Confirm Password:</label>
-          <Input 
+        <Input 
           type='password'
           id="confirm-password"
           name="confirm-password"
           className='authInput'
+          placeholder='Confirm Password'
           value={confirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}/>
-        </div>
         <Button 
         type='submit'
         disabled={loading}>Sign Up</Button>

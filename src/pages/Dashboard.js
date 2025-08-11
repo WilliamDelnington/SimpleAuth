@@ -15,27 +15,9 @@ export default function Dashboard() {
     }
 
   return (
-    <div style={{
-        minHeight: "100vh",              /* min-h-screen */
-        display: "flex",                  /* flex */
-        alignItems: "center",          /* items-center */
-        justifyContent: "center",       /* justify-center */
-        backgroundColor: "#f3f4f6"      /* bg-gray-100 */
-    }}>
-        <div style={{
-            backgroundColor: "#ffffff",     /* bg-white */
-            padding: "2rem",                 /* p-8 (8 × 0.25rem = 2rem) */
-            borderRadius: "0.375rem",       /* rounded (default = 6px or 0.375rem) */
-            boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)", /* shadow-md */
-            width: "100%",                   /* w-full */
-            maxWidth: "28rem"              /* max-w-md (md = 448px = 28rem) */
-        }}>
-            <h2 style={{
-                fontSize: "1.5rem",             /* text-2xl */
-                fontWeight: 700,              /* font-bold */
-                marginBottom: "1.5rem",         /* mb-6 (6 × 0.25rem = 1.5rem) */
-                textAlign: "center" 
-            }}>Welcome, {user?.name || 'User'}!</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+            <h2 className="text-2xl font-bold mb-6 text-center">Welcome, {user?.first_name + user?.last_name || 'User'}!</h2>
             <div style={{
                 display: 'flex', 
                 flexDirection: 'column', 
@@ -51,16 +33,10 @@ export default function Dashboard() {
                 }}>
                     <Link
                     to="/update-profile"
-                    style={{
-                        color: "#3b82f6",           /* text-blue-500 */
-                        textAlign: "center" 
-                    }}>Update Profile</Link>
+                    className='text-blue-500'>Update Profile</Link>
                     <Link
                     to="/update-password"
-                    style={{
-                        color: "#3b82f6",           /* text-blue-500 */
-                        textAlign: "center" 
-                    }}>Update Password</Link>
+                    className='text-blue-500'>Update Password</Link>
                 </div>
                 <Button onClick={handleSignout}>Sign Out</Button>
             </div>

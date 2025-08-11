@@ -17,10 +17,12 @@ function getCsrfToken() {
 }
 
 axiosInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   const publicPaths = [endpoints.signUp, endpoints.signIn];
   if (token && !publicPaths.some(path => config.url.includes(path))) {
     config.headers.Authorization = `Bearer ${token}`;
+  } else {
+    console.log("No token")
   }
   return config;
 });
@@ -34,13 +36,23 @@ axiosInstance.interceptors.response.use(
 
     // Access token expired
     if (error.response.status === 401 && !originalRequest._retry) {
+      console.log("Refreshing token...")
       originalRequest._retry = true;
 
-      try {
-        await axiosInstance.post(endpoints.refreshToken, {}, { withCredentials: true });
+      const refreshToken = localStorage.getItem('refresh_token');
+      if (!refreshToken) {
+        return Promise.reject(error);
+      }
 
-        // const newToken = res.data.accessToken;
-        // localStorage.setItem('accessToken', newToken);
+      try {
+        const res = await axiosInstance.post(
+          endpoints.refreshToken, 
+          { refresh: refreshToken }, 
+          // { withCredentials: true }
+        );
+
+        const newToken = res.data.access;
+        sessionStorage.setItem('token', newToken);
 
         // // Update the header and retry original request
         // originalRequest.headers.Authorization = `Bearer ${newToken}`;
@@ -48,6 +60,7 @@ axiosInstance.interceptors.response.use(
       } catch (refreshErr) {
         console.error('Refresh Token Error:', refreshErr);
         localStorage.removeItem("user")
+        sessionStorage.removeItem('token');
         // Refresh token also failed (e.g., expired)
         return Promise.reject(refreshErr);
       }
