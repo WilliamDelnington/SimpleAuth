@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react'
 
 function Input({
     name, 
@@ -21,8 +20,8 @@ function Input({
     type={type}
     placeholder={placeholder}
     required={required}
-    onFocus={handleFocus}
-    onBlur={handleBlur}
+    // onFocus={handleFocus}
+    // onBlur={handleBlur}
     // style={{
     //     padding: "0.5rem 0.5rem 0.75rem 0.75rem",
     //     borderWidth: '1px',
