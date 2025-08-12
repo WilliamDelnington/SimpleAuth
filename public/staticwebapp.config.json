@@ -1,0 +1,47 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+      "/images/*",
+      "/assets/*",
+      "/*.css",
+      "/*.js",
+      "/*.ico",
+      "/*.png",
+      "/*.jpg",
+      "/*.jpeg",
+      "/*.gif",
+      "/*.svg"
+    ]
+  },
+  "routes": [
+    {
+      "route": "/signin",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/signup",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/forgot-password",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/reset-password",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/update-password",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/update-profile",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/",
+      "rewrite": "/index.html"
+    }
+  ]
+}
