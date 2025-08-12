@@ -18,25 +18,17 @@ export default function Dashboard() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
             <h2 className="text-2xl font-bold mb-6 text-center">Welcome, {user?.first_name + user?.last_name || 'User'}!</h2>
-            <div style={{
-                display: 'flex', 
-                flexDirection: 'column', 
-                gap: '1rem'
-            }}>
-                <p style={{color: "#374151"}}>
+            <div className="space-y-4">
+                <p className="text-gray-700">
                     <strong>Email:</strong> {user?.email || 'N/A'}
                 </p>
-                <div style={{
-                    display: 'flex', 
-                    flexDirection: 'column', 
-                    gap: '0.5rem'
-                }}>
+                <div className="flex flex-col space-y-2">
                     <Link
                     to="/update-profile"
-                    className='text-blue-500'>Update Profile</Link>
+                    className='text-blue-500 hover:underline text-center'>Update Profile</Link>
                     <Link
                     to="/update-password"
-                    className='text-blue-500'>Update Password</Link>
+                    className='text-blue-500 hover:underline text-center'>Update Password</Link>
                 </div>
                 <Button onClick={handleSignout}>Sign Out</Button>
             </div>

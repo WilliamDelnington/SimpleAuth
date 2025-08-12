@@ -4,7 +4,9 @@ import endpoints from "./endpoints";
 
 const axiosInstance = axios.create({
   // baseURL: 'http://127.0.0.1:8000', // Replace base URL
-  baseURL: "https://simpleauth-e5cnh0cfcxfcdbd0.canadacentral-01.azurewebsites.net",
+  baseURL: process.env.NODE_ENV === "production" 
+  ? "https://simpleauth-e5cnh0cfcxfcdbd0.canadacentral-01.azurewebsites.net"
+  : "http://127.0.0.1:8000",
   headers: {
     'Content-Type': 'application/json',
     
