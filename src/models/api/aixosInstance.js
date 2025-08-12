@@ -20,6 +20,8 @@ const axiosInstance = axios.create({
 //   }
 // }
 
+axiosInstance.defaults.withCredentials = true
+
 axiosInstance.interceptors.request.use((config) => {
   const token = sessionStorage.getItem('token');
   const publicPaths = [endpoints.signUp, endpoints.signIn];
