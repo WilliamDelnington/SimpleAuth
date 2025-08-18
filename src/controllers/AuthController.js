@@ -12,14 +12,16 @@ const AuthController = {
                 password,
                 location
             });
+            console.log(response)
             return { 
                 success: true, 
                 data: response 
             }; // { token, user }
         } catch (error) {
+            console.error(error)
             return {
                 success: false,
-                error: error.message || 'Sign-in failed',
+                error: error.response?.data?.message || 'Sign-in failed. Try again later.',
             };
         }
     },
@@ -50,7 +52,7 @@ const AuthController = {
         } catch (error) {
             return {
                 success: false,
-                error: error.message || 'Sign-up failed',
+                error: error.response?.data?.message || 'Sign-up failed. Try again later.',
             };
         }
     },
@@ -65,7 +67,7 @@ const AuthController = {
         } catch (error) {
             return {
                 success: false,
-                error: error.message || 'Request failed',
+                error: error.response?.data?.message || 'Request failed. Try again later.',
             };
         }
     },
@@ -80,7 +82,7 @@ const AuthController = {
         } catch (error) {
             return {
                 success: false,
-                error: error.message || "Reset password failed"
+                error: error.response?.data?.message || "Reset password failed. Try again later."
             }
         }
     },
@@ -115,7 +117,7 @@ const AuthController = {
             // console.error(error)
             return {
                 success: false,
-                error: error.message || 'Update failed',
+                error: error.response?.data?.error || 'Update profile failed. Try again later.',
             };
         }
     },
@@ -134,7 +136,7 @@ const AuthController = {
         } catch (error) {
             return {
                 success: false,
-                error: error.message || 'Password update failed',
+                error: error.response?.data?.message || 'Password update failed. Try again later.',
             };
         }
     },

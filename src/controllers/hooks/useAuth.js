@@ -158,7 +158,7 @@ export function useAuth() {
             currentPassword,
             newPassword,
         });
-        console.log(success, data, errMsg)
+        // console.log(success, data, errMsg)
         if (success) {
             setError(null);
             return data.message;
